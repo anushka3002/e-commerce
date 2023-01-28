@@ -1,15 +1,15 @@
 import {Routes,Route} from "react-router"
-import Navbar from "../Navbar"
+import Homepage from "../Homepage"
 import Products from "../Products"
-import Wishlist from "../Wishlist"
+import SearchPage from "../SearchPage"
 
 export const Router=()=>{
     return(
     <>
     <Routes>
-        <Route exact path="/" element={<Products/>}/>
+        <Route exact path="/" element={<Homepage/>}/>
         <Route exact path="/products" element={<Products/>}/>
-        <Route exact path="/wishlist" element={<Wishlist/>}/>
+        <Route exact path="/searchpage" element={<SearchPage/>}/>
     </Routes>
     </>
     )
