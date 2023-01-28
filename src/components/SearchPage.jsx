@@ -1,26 +1,34 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 
 const SearchPage = () =>{
 
     const [data,setData] = useState([])
     const [searchValue, setSearchValue] = useState("")
-    const [value,setValue] = useState("")
+    let flag = false;
 
       const handleChange = (e) => {
         setSearchValue(e)
         };
   
       const onSubmit = () =>{
-        axios
-        .get(
-          `https://dummyjson.com/products/search?q=${searchValue}`
-        )
-        .then((res) => {
-          setData(res.data.products);
-        });
+        if(searchValue.length!=0){
+            axios
+            .get(
+              `https://dummyjson.com/products/search?q=${searchValue}`
+            )
+            .then((res) => {
+              setData(res.data.products);
+            });
+        }
       }
+
+      useEffect(()=>{
+        if(data.length>0){
+            flag = true;
+        }  
+      },[])
 
     return(
     <>
@@ -39,7 +47,7 @@ const SearchPage = () =>{
             </div>
             </div>   
         <div className="flex">
-        {data.length==0? <div className="text-center mx-auto mt-[200px] text-[23px]">Oops! No Result available</div> :
+        {flag==true && searchValue.length!=0 && data.length==0? <div className="text-center mx-auto mt-[200px] text-[23px]">Oops! No Result available</div> :
           <div className="grid grid-cols-3 mx-auto items-center px-2 pt-10 gap-[70px]">
             { data?.map((e, i) => {
               return (
