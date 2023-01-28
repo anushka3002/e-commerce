@@ -21,7 +21,6 @@ const Homepage = () => {
       .then((res) => {
         setData(res.data);
         setMainData(res.data);
-        console.log(res.data,"res")
       });
   }, [count]);
 
@@ -59,7 +58,6 @@ const Homepage = () => {
     localStorage.setItem("categoryName", JSON.stringify(listData));
   };
 
-  console.log(listData,"listdata")
   return (
     <>
       <div>

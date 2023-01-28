@@ -5,7 +5,6 @@ import Navbar from "./Navbar";
 const Products = () => {
   const [data, setData] = useState([])
   let categoryName = JSON.parse(localStorage.getItem("categoryName")) || "";
-  console.log(categoryName,"pri")
   useEffect(() => {
     axios
       .get(
@@ -13,7 +12,6 @@ const Products = () => {
       )
       .then((res) => {
         setData(res.data.products);
-        console.log(res.data.products,"product data");
       });
   }, []);
 

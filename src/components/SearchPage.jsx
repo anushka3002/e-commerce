@@ -19,16 +19,16 @@ const SearchPage = () =>{
               `https://dummyjson.com/products/search?q=${searchValue}`
             )
             .then((res) => {
+                flag = true;
+                console.log(flag)
+                console.log(searchValue.length!=0 && data.length==0,"batao")
+                console.log(data.length,"asdf")
               setData(res.data.products);
-            });
+            }).catch((err)=>{
+                console.log(err)
+            })
+            }
         }
-      }
-
-      useEffect(()=>{
-        if(data.length>0){
-            flag = true;
-        }  
-      },[])
 
     return(
     <>
@@ -47,7 +47,7 @@ const SearchPage = () =>{
             </div>
             </div>   
         <div className="flex">
-        {flag==true && searchValue.length!=0 && data.length==0? <div className="text-center mx-auto mt-[200px] text-[23px]">Oops! No Result available</div> :
+        {flag && searchValue.length!=0 && data.length==0? <div className="text-center mx-auto mt-[200px] text-[23px]">Oops! No Result available</div> :
           <div className="grid grid-cols-3 mx-auto items-center px-2 pt-10 gap-[70px]">
             { data?.map((e, i) => {
               return (
